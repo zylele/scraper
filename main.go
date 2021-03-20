@@ -35,7 +35,7 @@ func main() {
             }
         }
     })
-    url := fmt.Sprintf("https://www.jisilu.cn/data/lof/stock_lof_list/?___jsl=LST___t=%s&rp=25&page=1", time.Now().UnixNano())
+    url := fmt.Sprintf("https://www.jisilu.cn/data/lof/stock_lof_list/?___jsl=LST___t=%d&rp=25&page=1", time.Now().UnixNano())
     err := c.Visit(url)
     if err != nil {
         fmt.Println(err)
