@@ -52,13 +52,7 @@ func sendEmail() {
     m.SetBody("text/html", "Hello <b>Bob</b> and <i>Cora</i>!")
 
     d := gomail.NewDialer("smtp.gmail.com", 465, "znyalor@gmail.com", gmailPwd)
-    s, err := d.Dial()
-    if err != nil {
-        fmt.Println("sendEmail err", err)
-        panic(err)
-    }
-    err = s.Close()
-    if err != nil {
+    if err := d.DialAndSend(m); err != nil {
         fmt.Println("sendEmail err", err)
         panic(err)
     }
