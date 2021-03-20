@@ -10,15 +10,12 @@ import (
 )
 
 var(
-    GmailPwd string
-    gmail_pwd string
+    gmailPwd string
 )
 
 func main() {
-    GmailPwd = os.Getenv("GMAIL_PWD")
-    gmail_pwd = os.Getenv("gmail_pwd")
-    fmt.Println("GMAIL_PWD", GmailPwd)
-    fmt.Println("gmail_pwd", gmail_pwd)
+    gmailPwd = os.Getenv("gmail_pwd")
+    fmt.Println("gmail_pwd", gmailPwd)
 
     // Instantiate default collector
     c := colly.NewCollector()
@@ -54,10 +51,14 @@ func sendEmail() {
     m.SetHeader("Subject", "Hello!")
     m.SetBody("text/html", "Hello <b>Bob</b> and <i>Cora</i>!")
 
-    d := gomail.NewDialer("smtp.gmail.com", 465, "znyalor@gmail.com", gmail_pwd)
-
-    // Send the email to Bob, Cora and Dan.
-    if err := d.DialAndSend(m); err != nil {
+    d := gomail.NewDialer("smtp.gmail.com", 465, "znyalor@gmail.com", gmailPwd)
+    s, err := d.Dial()
+    if err != nil {
+        fmt.Println("sendEmail err", err)
+        panic(err)
+    }
+    err = s.Close()
+    if err != nil {
         fmt.Println("sendEmail err", err)
         panic(err)
     }
