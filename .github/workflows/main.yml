@@ -1,0 +1,19 @@
+name: Build scraper-consultant
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  daily-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.15' # The Go version to download (if necessary) and use.
+      - run: go run main.go
