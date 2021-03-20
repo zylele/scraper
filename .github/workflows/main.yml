@@ -16,5 +16,6 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '^1.15' # The Go version to download (if necessary) and use.
-          gmail_pwd: ${{ secrets.GMAIL_PWD }}
       - run: go run main.go
+        with:
+          gmail_pwd: ${{ secrets.GMAIL_PWD }}
