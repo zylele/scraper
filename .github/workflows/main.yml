@@ -17,5 +17,3 @@ jobs:
         with:
           go-version: '^1.15' # The Go version to download (if necessary) and use.
       - run: go run main.go
-        env:
-          gmail_pwd: ${{ secrets.GMAIL_PWD }}
